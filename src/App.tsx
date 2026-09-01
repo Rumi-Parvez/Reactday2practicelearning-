@@ -1,7 +1,22 @@
+import { Suspense } from 'react'
+import Users from './api'
 import './App.css'
-import Cart from './cart'
-import Counter from './counter'
+// import Cart from './cart'
+// import Counter from './counter'
 
+
+
+
+
+
+
+
+
+const UserDataPromise = async ()=>{
+  const res = await fetch('https://jsonplaceholder.typicode.com/users')
+  const data = await res.json();
+  return data ;
+}
 function App() {
   // function btnClick(){
   //   alert("Are pagla goma giya ")
@@ -17,7 +32,12 @@ function App() {
   return (
     <>
 
-    <Counter></Counter>
+    {/* <Counter></Counter> */}
+    <p>--------------------</p>
+
+    <Suspense fallback={<p>Loading........</p>}>
+      <Users  userDataPromise= {UserDataPromise()}></Users>
+    </Suspense>
     {/* <Cart></Cart> */}
 
 
